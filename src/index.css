@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #1a1e27;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: -0.02em;
+}
+
+/* Thin Aviasales-style scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d9dce3;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9ba3b2;
+}
+
+/* Skeleton shimmer surface */
+.skeleton {
+  background-image: linear-gradient(90deg, #eef0f3 0%, #f5f7fa 50%, #eef0f3 100%);
+  background-size: 200% 100%;
+}
+
+/* ── Leaflet overrides ─────────────────────────────────────── */
+.leaflet-container {
+  background: #eaf1f9;
+  font-family: 'Inter', sans-serif;
+}
+/* Desaturate base tiles so the blue UI pops (per spec) */
+.leaflet-tile-pane {
+  filter: brightness(0.97) saturate(0.82);
+}
+.leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+.leaflet-popup-content {
+  margin: 12px 14px;
+  font-size: 13px;
+}
+.leaflet-bar a,
+.leaflet-control-zoom a {
+  border-radius: 8px !important;
+  color: #1a1e27;
+}
+
+/* Custom map markers (divIcon hosts) */
+.skynet-marker {
+  background: transparent;
+  border: none;
+}
+.aircraft-icon {
+  transition: transform 120ms linear;
+  will-change: transform;
+}
+
+/* Airport pin markers */
+.ap-pin {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ap-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--c, #0c73fe);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+.ap-label {
+  margin-top: 2px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #1a1e27;
+  background: rgba(255, 255, 255, 0.88);
+  padding: 0 4px;
+  border-radius: 4px;
+  line-height: 14px;
+  white-space: nowrap;
+}
+.skynet-ping {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--c, #00c176);
+  animation: skynet-ping 1.6s ease-out infinite;
+}
+@keyframes skynet-ping {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+/* Airport cluster badge */
+.ap-cluster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: rgba(12, 115, 254, 0.9);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(12, 115, 254, 0.35);
+}
+
+/* Animated dashed route line */
+.route-line {
+  animation: route-dash 1s linear infinite;
+}
+@keyframes route-dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+/* Page enter animation utility */
+.page-enter {
+  animation: fade-in 200ms ease;
+}
